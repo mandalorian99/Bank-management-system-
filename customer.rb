@@ -9,7 +9,7 @@ class  Customer < User
     #code here 
   end
   
-  Private 
+  private 
   def deposite
     #code here 
   end
