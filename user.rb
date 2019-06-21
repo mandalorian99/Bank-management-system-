@@ -5,12 +5,14 @@
 class User
   @@obj_refs = Array.new 
 
+  #class method 
   def self.create(data_hash = {})
     temp_obj = self.new(data_hash)
     @@obj_refs << temp_obj
     temp_obj
   end 
 
+  # instance methods 
   def read
 
     attrs = self.attributes
@@ -42,17 +44,23 @@ class User
   # other methdos 
 
   def self.all
-    
+
     attrs =self.attributes 
-
+    p attrs
+    # Bug -> Here only attr_accessor of one class is incoming 
+    # attrs only have attributes of first class it call
+    # need to find out a way to access attributes of any class
+    # upon call
     @@obj_refs.each do |ref|
-
+      obj = ref
       p "-----------------"
-      (attrs.size).times do |i|
-         p ref.send(attrs[i])
-      end
 
+      (attrs.size).times do |i|
+         p obj.send(attrs[i])
+      end
+      p "-------end-------"
     end
+
 
   end
   
@@ -60,6 +68,8 @@ class User
     "Object count = #{@@obj_refs.size}" 
   end
 
+  #abstraction 
+  private 
   # overriding attr_asscessor 
   def self.attr_accessor(*vars)
     @attributes ||= []
@@ -75,7 +85,6 @@ class User
     self.class.attributes
   end
 
-  private 
   def exists?
     (@@obj_refs.include? self) ? true : false 
   end
