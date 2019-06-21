@@ -4,22 +4,25 @@
 
 class User
   @@obj_refs = Array.new 
-  temp_obj = self.new
 
   def self.create(data_hash = {})
-    @attrs = self.attributes
-    temp_obj = self.new 
-    p self.methods(false)
-    #p @attrs.inspect
-    @attrs.each do |var|
-      
-    end
-    
-    #@@obj_refs << temp_obj
-  end
+    temp_obj = self.new(data_hash)
+    @@obj_refs << temp_obj
+    temp_obj
+  end 
 
   def read
-    # code here 
+
+    attrs = self.attributes
+
+    if !exists? 
+      return "xxxxx No data found xxxxx"
+    end
+
+    (attrs.size).times do |val|
+       p self.send( attrs[val] )
+    end
+
   end
 
   def update
@@ -27,18 +30,35 @@ class User
   end
 
   def delete 
-    # code here 
+
+    if !exists?
+      return "object already deleted" 
+    end
+   
+    @@obj_refs.delete_if{|ref| ref == self }
+    "deleted..."
   end 
 
   # other methdos 
 
   def self.all
-    # code here
-  end
+    
+    attrs =self.attributes 
 
-  def exists?
-    # code here 
-  end 
+    @@obj_refs.each do |ref|
+
+      p "-----------------"
+      (attrs.size).times do |i|
+         p ref.send(attrs[i])
+      end
+
+    end
+
+  end
+  
+  def self.count
+    "Object count = #{@@obj_refs.size}" 
+  end
 
   # overriding attr_asscessor 
   def self.attr_accessor(*vars)
@@ -55,5 +75,9 @@ class User
     self.class.attributes
   end
 
+  private 
+  def exists?
+    (@@obj_refs.include? self) ? true : false 
+  end
 
 end
