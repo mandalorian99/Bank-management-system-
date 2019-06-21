@@ -1,12 +1,27 @@
 # Entry point of application 
 
 require './customer.rb'
-
+require './employe.rb'
 class App
   def self.launch
     #creating a customer 
+=begin
     c1 = {'customer_id':101 , 'name':'john doe' , 'email':'doe@john.com' , 'phone':'893784'}
-    Customer.create(c1)     
+    customer = Customer.create(c1)
+
+    c2 = {'customer_id':102 , 'name':'abhram' , 'email':'god@lord.com' , 'phone':'999'}
+    customer2 = Customer.create(c2)
+
+    Customer.all
+    p "=============="
+=end
+    e1 = {'emp_id':1002 , 'name':'eva' ,'email':'eva@gmail.com','phone':'94783'}
+    emp1 = Employe.create(e1) 
+
+    e2 = {'emp_id':1003 , 'name':'angel' ,'email':'angel@hotmail.com','phone':'0000'}
+    emp2 = Employe.create(e2)
+    
+    Employe.all
   end
 
 end
