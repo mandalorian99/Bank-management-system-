@@ -54,7 +54,7 @@ class App
    p Account.count
 
    p "---------------List of all account --------"
-   
+   puts accn2.check_balance(60000999)
    # deleting a account 
    #Account.delete(accn2)
    #p Account.count
