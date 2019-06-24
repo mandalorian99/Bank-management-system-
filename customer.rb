@@ -1,12 +1,23 @@
 # Class : Customer 
 # Handle All customer CRUD 
-require './user.rb'
+require './balance.rb'
 
-class  Customer < User
+class  Customer < Balance
   attr_accessor :customer_id , :name , :email , :phone 
-  
-  def view_balance
-    #code here 
+
+  def balance?(acn)
+    # loop into global obj_ref array 
+    # check if obj.account_number == acn or not 
+    # if found a match return obj refrence 
+    # this object refrence used by class::balance/function 
+    # to check balance 
+
+    #@@obj_refs.each do |obj|
+    #  if obj.instance_variable_get("@account_number") == acn 
+    #    result = obj.check_balance(acn)
+    #  end 
+    #end
+    self.check_balance(acn)
   end
   
   def test 

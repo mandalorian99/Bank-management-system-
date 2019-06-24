@@ -2,19 +2,18 @@
 require './balance.rb'
 
 class Account < Balance 
-  ATTRS =[ :id , :account_number , :account_type , :account_balance ]
+  ATTRS = [:id, :account_number, :account_type, :account_balance]
   attr_accessor(*ATTRS)   
   @@accnt_refs = Array.new 
 
   # public function 
   def view_account
-    #"[ id:#{self.id} , acn:#{self.account_number} , type:#{self.account_type} , balance:#{account_balance}"
-    result = "[ "
+    result = '[ '
     ATTRS.each do |key|
       result += self.instance_variable_get("@#{key}").to_s 
-      result += " , "
+      result += ' , '
     end
-    result += "]"
+    result += ']'
 
   end
   
@@ -27,7 +26,6 @@ class Account < Balance
   end
 
   def self.all
-
     result = ""
     @@accnt_refs.each do |obj|
        result += obj.view_account
@@ -38,17 +36,17 @@ class Account < Balance
   end
 
   private 
+  
   # Delete account refrence 
   def self.delete(obj)
     if !exists?(obj)
-      return "oops we didn't found information you request!!!"
+      return 'oops we didnt found information you request!!!'
     end 
     @@accnt_refs.delete(obj)
   end
 
   # Add new account 
   def self.add(data_hash = Employe{})
-
     temp_obj = self.new
     
     self::ATTRS.each do |var|

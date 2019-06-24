@@ -18,6 +18,7 @@ class App
     customer2 = Customer.create(c2)
 
     Customer.all
+
     p "=============="
     e1 = {'emp_id':1002 , 'name':'eva' ,'email':'eva@gmail.com','phone':'94783'}
     emp1 = Employe.create(e1) 
@@ -34,7 +35,7 @@ class App
      'id':3001 ,
      'account_number':'60033678' ,
      'account_type':'saving' ,
-     'account_balance': 0
+     'account_balance': 3500
    }
 
    accn = Account.add(a1)
@@ -55,6 +56,9 @@ class App
 
    p "---------------List of all account --------"
    puts accn2.check_balance(60000999)
+
+   p '---------customer balance enquirey------'
+   puts Customer.new.balance?(60033678)
    # deleting a account 
    #Account.delete(accn2)
    #p Account.count

@@ -3,6 +3,6 @@
 
 require './user.rb'
 
-class Employe < User
+class Employe 
   attr_accessor :emp_id , :name , :email , :phone  
 end 
