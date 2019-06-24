@@ -1,9 +1,13 @@
 # Class : Customer 
 # Handle All customer CRUD 
 require './balance.rb'
+require './crud.rb'
 
 class  Customer < Balance
-  attr_accessor :customer_id , :name , :email , :phone 
+  ATTRS = [:customer_id, :name, :email, :phone]
+  attr_accessor(*ATTRS)
+
+  include Crud
 
   def balance?(acn)
     # loop into global obj_ref array 
