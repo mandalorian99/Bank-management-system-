@@ -7,9 +7,19 @@ class User
 
   #class method 
   def self.create(data_hash = {})
-    temp_obj = self.new(data_hash)
+    attrs = self.attributes
+    temp_obj = self.new
+
+    # iterating through attributes 
+    attrs.each do |var|
+      value = data_hash.fetch(var)
+      temp_obj.instance_variable_set("@#{var}" , value)
+      #p temp_obj.instance_variable_get("@#{var}" )
+    end 
+
     @@obj_refs << temp_obj
     temp_obj
+    
   end 
 
   # instance methods 
@@ -67,8 +77,9 @@ class User
   def self.count
     "Object count = #{@@obj_refs.size}" 
   end
-
+  
   #abstraction 
+  
   private 
   # overriding attr_asscessor 
   def self.attr_accessor(*vars)
