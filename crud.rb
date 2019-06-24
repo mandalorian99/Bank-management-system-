@@ -2,32 +2,45 @@
 # Contain CRUD methods for object 
 
 module Crud 
-  @@obj_refs = Array.new 
 
-  def self.create(data_hash = {})
-    attrs = self.attributes
-    temp_obj = self.new
-
-    # iterating through attributes 
-    attrs.each do |var|
-      value = data_hash.fetch(var)
-      temp_obj.instance_variable_set("@#{var}" , value)
-      #p temp_obj.instance_variable_get("@#{var}" )
-    end 
-
-    @@obj_refs << temp_obj
-    temp_obj
+  module ClassMethods
+    @@obj_refs = Array.new 
     
-  end 
+    def create(data_hash = {})
+      #attrs = self.attributes
+      attrs = self::ATTRS 
+      temp_obj = self.new
+      # iterating through attributes 
+      attrs.each do |var|
+        value = data_hash.fetch(var)
+        temp_obj.instance_variable_set("@#{var}" , value)
+        #p temp_obj.instance_variable_get("@#{var}" )
+      end
+        @@obj_refs << temp_obj
+        temp_obj
+    end
+
+    
+
+  end
+
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  def test1 
+    p "evokedd...."
+  end
+
 
   # instance methods 
   def read
-
-    attrs = self.attributes
-
-    if !exists? 
-      return "xxxxx No data found xxxxx"
-    end
+    attrs = self.class::ATTRS
+    
+    # exists function not working in read 
+    #if !exists? 
+     # return "xxxxx No data found xxxxx"
+    #end
 
     (attrs.size).times do |val|
        p self.send( attrs[val] )
@@ -51,9 +64,9 @@ module Crud
 
   # other methdos 
 
-  def self.all
+  def all
 
-    attrs =self.attributes 
+    attrs =self::ATTRS
     p attrs
     # Bug -> Here only attr_accessor of one class is incoming 
     # attrs only have attributes of first class it call
@@ -72,10 +85,13 @@ module Crud
 
   end
   
-  def self.count
+  def count
     "Object count = #{@@obj_refs.size}" 
   end
   
+  def exists?
+    (@@obj_refs.include? self) ? true : false 
+  end
   #abstraction 
   
   private 
@@ -94,8 +110,6 @@ module Crud
     self.class.attributes
   end
 
-  def exists?
-    (@@obj_refs.include? self) ? true : false 
-  end
+  
 
 end 
