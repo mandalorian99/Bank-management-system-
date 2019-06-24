@@ -1,4 +1,5 @@
 # class : account 
+require './balance.rb'
 
 class Account 
   ATTRS =[ :id , :account_number , :account_type , :account_balance ]

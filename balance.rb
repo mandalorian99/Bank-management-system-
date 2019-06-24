@@ -3,11 +3,11 @@
 class Balance
   attr_accessor :id , :customer_id :balance 
 
-  def check_balance
-    # show balance 
+  def check_balance(account_number)
+    self.account_balance 
   end
 
-  private
+  protected 
   def credit
     # add balance 
   end
