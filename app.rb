@@ -2,6 +2,8 @@
 
 require './customer.rb'
 require './employe.rb'
+require './account.rb'
+
 class App
   def self.launch
     #creating a customer 
@@ -14,7 +16,6 @@ class App
 
     Customer.all
     p "=============="
-=end
     e1 = {'emp_id':1002 , 'name':'eva' ,'email':'eva@gmail.com','phone':'94783'}
     emp1 = Employe.create(e1) 
 
@@ -22,6 +23,18 @@ class App
     emp2 = Employe.create(e2)
     
     Employe.all
+=end
+
+  a1 = {
+    'id':3001 ,
+    'account_number'=>'60033678' ,
+    'account_type' =>'saving' ,
+    'account_balance'=> 0
+  }
+
+ Account.add(a1)
+
+
   end
 
 end

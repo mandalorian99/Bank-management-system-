@@ -50,7 +50,7 @@ class User
     # Bug -> Here only attr_accessor of one class is incoming 
     # attrs only have attributes of first class it call
     # need to find out a way to access attributes of any class
-    # upon call
+    # upon
     @@obj_refs.each do |ref|
       obj = ref
       p "-----------------"
