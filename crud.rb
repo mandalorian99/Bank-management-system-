@@ -2,10 +2,11 @@
 # Contain CRUD methods for object 
 
 module Crud 
-
+  @@obj_refs = Array.new 
+  
   module ClassMethods
-    @@obj_refs = Array.new 
     
+    @@obj_refs = Array.new 
     def create(data_hash = {})
       #attrs = self.attributes
       attrs = self::ATTRS 
@@ -36,11 +37,11 @@ module Crud
   # instance methods 
   def read
     attrs = self.class::ATTRS
-    
+
     # exists function not working in read 
-    #if !exists? 
-     # return "xxxxx No data found xxxxx"
-    #end
+    if !exists? 
+      return "xxxxx No data found xxxxx"
+    end
 
     (attrs.size).times do |val|
        p self.send( attrs[val] )
@@ -90,7 +91,7 @@ module Crud
   end
   
   def exists?
-    (@@obj_refs.include? self) ? true : false 
+     (@@obj_refs.include? self) ? true : false 
   end
   #abstraction 
   
