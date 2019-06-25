@@ -7,7 +7,7 @@ require './account.rb'
 class App
 
   def self.launch
-=begin
+
     #creating a customer    
     c1 = {'customer_id':101 , 'name':'john doe' , 'email':'doe@john.com' , 'phone':'893784'}
     customer = Customer.create(c1)
@@ -35,7 +35,7 @@ class App
     p emp1.read 
     p Employe.count 
 
-=end
+
 
    a1 = {
      'id':3001 ,
@@ -57,16 +57,18 @@ class App
    }
 
    accn2 = Account.create(a2)
-   p Account.count
-
-   Account.all
-   #p accn2
-   #p accn2.view_account
    #p Account.count
-=begin
-   p "---------------List of all account --------"
-   puts accn2.check_balance(60000999)
 
+   #Account.all
+
+   p "---------------List of all account --------"
+    puts Account.balance?('600009989')
+
+    p "---------depositing amount into acount-----------"
+     puts Account.balance?('60000999')
+     Customer.deposite('60000999' , '3000')
+     puts Account.balance?('60000999') 
+=begin
    p '---------customer balance enquirey------'
    puts Customer.new.balance?(60033678)
     
