@@ -4,10 +4,24 @@ require './balance.rb'
 require './crud.rb'
 
 class  Customer < Balance
+  
   ATTRS = [:customer_id, :name, :email, :phone]
   attr_accessor(*ATTRS)
-
+  
   include Crud
+  @@obj_refs = Array.new 
+
+  def initialize
+    @@obj_refs << self 
+  end
+
+  def get_obj_refs
+     @@obj_refs 
+  end 
+
+  def self.get_class_refs
+    @@obj_refs
+  end
 
   def balance?(acn)
     # loop into global obj_ref array 
