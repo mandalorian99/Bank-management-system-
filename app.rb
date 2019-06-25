@@ -44,7 +44,8 @@ class App
      'account_balance': 3500
    }
 
-   accn = Account.add(a1)
+   accn = Account.create(a1)
+   p accn.read
    #p accn.inspect
    
    # creating second account for test
@@ -55,11 +56,14 @@ class App
      'account_balance': 201
    }
 
-   accn2 = Account.add(a2)
-   #p accn2
-   p accn2.view_account
+   accn2 = Account.create(a2)
    p Account.count
 
+   Account.all
+   #p accn2
+   #p accn2.view_account
+   #p Account.count
+=begin
    p "---------------List of all account --------"
    puts accn2.check_balance(60000999)
 
@@ -71,7 +75,7 @@ class App
    p Account.delete(accn2)
    p Account.all
 
-
+=end
 
   end
 
