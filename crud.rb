@@ -4,7 +4,7 @@
 module Crud 
   
   module ClassMethods
-    
+
     def create(data_hash = {})
       attrs = self::ATTRS 
       temp_obj = self.new
@@ -27,8 +27,7 @@ module Crud
       obj_refs = Array.new 
       obj_refs = get_class_refs 
   
-      attrs =self::ATTRS
-      #p attrs
+      attrs = self::ATTRS
       # Bug -> Here only attr_accessor of one class is incoming 
       # attrs only have attributes of first class it call
       # need to find out a way to access attributes of any class
@@ -42,8 +41,22 @@ module Crud
         end
         p "-------end-------"
       end
-  
-  
+
+      # return object based upon attribute passed 
+      def find_by_id(uid)
+        obj_refs = Array.new 
+        obj_refs = get_class_refs
+        
+        obj_refs.each do |obj|
+          
+          if obj.account_number == uid 
+            return obj 
+          end 
+
+        end 
+
+      end
+
     end
 
   end
@@ -82,8 +95,8 @@ module Crud
     obj_refs.delete_if{|ref| ref == self }
     "deleted..."
   end 
-
-  # other methdos 
+  
+  # other methdos
 
   private 
 
@@ -93,5 +106,4 @@ module Crud
     "obje refs gete:#{obj_refs}"
      (obj_refs.include? self) ? true : false 
   end 
-
-end 
+end
