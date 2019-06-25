@@ -1,9 +1,9 @@
 # Class : Customer 
 # Handle All customer CRUD 
-require './balance.rb'
+require './account.rb'
 require './crud.rb'
 
-class  Customer < Balance
+class  Customer < Account
   
   ATTRS = [:customer_id, :name, :email, :phone]
   attr_accessor(*ATTRS)
@@ -24,17 +24,6 @@ class  Customer < Balance
   end
 
   def balance?(acn)
-    # loop into global obj_ref array 
-    # check if obj.account_number == acn or not 
-    # if found a match return obj refrence 
-    # this object refrence used by class::balance/function 
-    # to check balance 
-
-    #@@obj_refs.each do |obj|
-    #  if obj.instance_variable_get("@account_number") == acn 
-    #    result = obj.check_balance(acn)
-    #  end 
-    #end
     self.check_balance(acn)
   end
   
@@ -44,8 +33,9 @@ class  Customer < Balance
   
   # Abstraction 
   private 
-  def deposite
-    #code here 
+  def self.deposite(account_number , amount)
+    "crediting #{amount} into your account #{account_number} "
+    Account.credit(account_number , amount)
   end
 
   def widraw
