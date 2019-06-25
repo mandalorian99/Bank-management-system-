@@ -1,6 +1,7 @@
-# class : Balance
+=begin 
+require './account.rb'
 
-class Balance
+class Balance < Account
   attr_accessor :id, :customer_id, :balance
 
   def check_balance(account_number)
