@@ -4,8 +4,23 @@ require './balance.rb'
 class Account < Balance 
   ATTRS = [:id, :account_number, :account_type, :account_balance]
   attr_accessor(*ATTRS)   
-  @@accnt_refs = Array.new 
 
+  include Crud
+  @@obj_refs = Array.new 
+
+  def initialize
+    @@obj_refs << self 
+  end
+
+  def get_obj_refs
+     @@obj_refs 
+  end 
+
+  def self.get_class_refs
+    @@obj_refs
+  end
+
+=begin
   # public function 
   def view_account
     result = '[ '
@@ -46,7 +61,7 @@ class Account < Balance
   end
 
   # Add new account 
-  def self.add(data_hash = Employe{})
+  def self.add(data_hash = {})
     temp_obj = self.new
     
     self::ATTRS.each do |var|
@@ -70,5 +85,5 @@ class Account < Balance
     "object count:#{@@accnt_refs.size }"
   end 
   
-  
+=end 
 end
