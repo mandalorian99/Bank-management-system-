@@ -39,16 +39,20 @@ class Account
 
   def self.credit(account_number, amount)
     # Get obj first 
-    p self 
     acn_obj_ref = self.find_by_id(account_number)
     current_balance = acn_obj_ref.account_balance.to_i
     new_balance = current_balance + amount.to_i
-    acn_obj_ref.account_balance= new_balance
-    # then do the maths 
+    acn_obj_ref.account_balance = new_balance
+    "XX your account #{account_number} is credit by amount #{amount} , current balance : #{new_balance} XX"
   end
 
-  def self.debit
-    # reduce blance
+  def self.debit(account_number,amount)
+    acn_obj_ref = self.find_by_id(account_number)
+    current_balance = acn_obj_ref.account_balance.to_i 
+    new_balance = current_balance - amount.to_i 
+    acn_obj_ref.account_balance = new_balance 
+
+    "XXX your account #{account_number} is debited by amount #{amount} , current balance : #{new_balance}"
   end
 
 end
