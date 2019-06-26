@@ -9,7 +9,7 @@ class Employe
   attr_accessor(*ATTRS)
 
   include Crud
-  @@obj_refs = Array.new 
+  @@obj_refs = Array.new
 
   def initialize
     @@obj_refs << self 

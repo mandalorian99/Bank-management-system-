@@ -66,8 +66,11 @@ class App
 
     p "---------depositing amount into acount-----------"
      puts Account.balance?('60000999')
-     Customer.deposite('60000999' , '3000')
+     p Customer.deposite('60000999' , '3000')
+     p Customer.widraw('60000999','1000') 
      puts Account.balance?('60000999') 
+    p '-------transfering amount--------'
+    p Customer.transfer('60000999' , '60033678' , '300')
 =begin
    p '---------customer balance enquirey------'
    puts Customer.new.balance?(60033678)
