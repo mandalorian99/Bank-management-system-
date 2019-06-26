@@ -38,12 +38,13 @@ class  Customer < Account
     Account.credit(account_number , amount)
   end
 
-  def widraw
-    #code here 
+  def self.widraw(account_number , amount)
+    Account.debit(account_number , amount)
   end
 
-  def transfer
-    #code here 
+  def self.transfer(transfer_from , transfer_to , amount)
+    Account.debit(transfer_from, amount)
+    Account.credit(transfer_to, amount)
   end
 
 end
