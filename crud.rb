@@ -26,7 +26,7 @@ module Crud
     def all
       obj_refs = Array.new 
       obj_refs = get_class_refs 
-  
+      
       attrs = self::ATTRS
       # Bug -> Here only attr_accessor of one class is incoming 
       # attrs only have attributes of first class it call

@@ -29,7 +29,7 @@ class App
   end
 
   def self.display_menu_2
-    options = ["Create Customers" , "Show Details" ,"Delete Customer" , "Update Customer" , "Exit"]
+    options = ["Create Customers" , "List All" ,"Delete Customer" , "Update Customer" , "Exit"]
     system('clear')
     puts "\n\n\n\n"
     puts "\t\t\t================================="
@@ -39,13 +39,33 @@ class App
     (options.size).times do |count|
       puts "  \t\t\t [#{count+1}]  #{options[count]}" 
     end 
+
     print "\t\t\t Enter your choice : "
 
     case(gets.chomp) 
     when '1'
-      puts "creating "
+      puts "\t\t\t=====Enter your data======"
+      data = Hash.new
+      print "\t\t\t Enter Id :"
+      data[:customer_id] = gets.chomp
+      print "\t\t\t Enter Name :"
+      data[:name] = gets.chomp
+      print "\t\t\t Enter Email :"
+      data[:email] = gets.chomp
+      print "\t\t\t Enter Phone :"
+      data[:phone] = gets.chomp
+
+      # evoking class function
+      c = Customer.create(data)
+      print "\t\tXXXXXXXX customer created successfully XXXXXXXX\n"
+      print "\t\t\t Add another record?(yes/no) : "
+      flag = gets.chomp 
+      if flag == 'no'
+        display_menu_2
+      end  
+
     when '2'
-      puts "reading"
+      Customer.all
     when '3'
       puts "deleting"
     when '4'
@@ -69,10 +89,23 @@ class App
     (options.size).times do |count|
       puts "  \t\t\t [#{count+1}]  #{options[count]}" 
     end 
-    print "\t\t\t Enter your choice : "
-    choice = gets.chomp
 
-    switcher(choice)
+    print "\t\t\t Enter your choice : "
+
+    case(gets.chomp) 
+    when '1'
+      puts "creating "
+    when '2'
+      puts "reading"
+    when '3'
+      puts "deleting"
+    when '4'
+      puts "updating"
+    when '5'
+      exit
+    else 
+      puts "invalid choice"
+    end
 
   end
 
@@ -86,11 +119,24 @@ class App
 
     (options.size).times do |count|
       puts "  \t\t\t [#{count+1}]  #{options[count]}" 
-    end 
-    print "\t\t\t Enter your choice : "
-    choice = gets.chomp
+    end
 
-    switcher(choice)
+    print "\t\t\t Enter your choice : "
+
+    case(gets.chomp) 
+    when '1'
+      puts "creating "
+    when '2'
+      puts "reading"
+    when '3'
+      puts "deleting"
+    when '4'
+      puts "updating"
+    when '5'
+      exit
+    else 
+      puts "invalid choice"
+    end
 
   end
 
